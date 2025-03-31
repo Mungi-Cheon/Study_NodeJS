@@ -1,0 +1,22 @@
+{
+  "name": "study_nodejs",
+  "version": "1.0.0",
+  "description": "Node.js 학습",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mungi-Cheon/Study_NodeJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mungi-Cheon/Study_NodeJS/issues"
+  },
+  "homepage": "https://github.com/Mungi-Cheon/Study_NodeJS#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
