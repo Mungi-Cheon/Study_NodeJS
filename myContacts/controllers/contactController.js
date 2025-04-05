@@ -4,11 +4,17 @@ const Contact = require("../models/contactModel");
 // Get all contacts
 const getAllContacts = asyncHandler(async (req, res) => {
     const contacts = await Contact.find();
-    res.send(contacts);
+    res.render("index", {contacts : contacts});
 });
 
-// Post /contacts
-const addContacts = asyncHandler(async (req, res) => {
+// View add Contact form
+// Get /contacts/add
+const addContactForm = (req, res) => {
+    res.render("add");
+};
+
+// Post /contacts/add
+const createContacts = asyncHandler(async (req, res) => {
     console.log(req.body);
     const {name, email, phone} = req.body;
     if(!name || !email || !phone){
@@ -23,8 +29,8 @@ const addContacts = asyncHandler(async (req, res) => {
 
 // Get contact /contact/id
 const getContacts = asyncHandler(async (req, res) => {
-    const contacts = await Contact.findById(req.params.id);
-    res.send(contacts);
+    const contact = await Contact.findById(req.params.id);
+    res.render("update", {contact : contact});
 });
 
 // Update contact /contact/id
@@ -41,20 +47,20 @@ const updateContact = asyncHandler(async (req, res) => {
     contact.phone = phone;
     contact.save();
 
-    res.json(contact);
+    res.redirect("/contacts");
 });
 
 // Delete contact /contact/id
 const deleteContact = asyncHandler(async (req, res) => {
-    const id = req.params.id;
-    const contact = await Contact.findById(id);
-
-    if (!contact) {
-        throw new Error("Contact not found.");
-    }
-
-    await contact.deleteOne();
-    res.send("Deleted");
+    await Contact.findByIdAndDelete(req.params.id);
+    res.redirect("/contacts");
 });
 
-module.exports = {getAllContacts, addContacts, getContacts, updateContact, deleteContact};
+module.exports = {
+    getAllContacts, 
+    createContacts, 
+    getContacts, 
+    updateContact, 
+    deleteContact, 
+    addContactForm
+};

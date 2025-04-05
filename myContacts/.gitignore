@@ -4,6 +4,7 @@
 ### node.js ###
 node_modules
 package-lock.json
+.env
 
 ### VisualStudioCode ###
 .vscode/*
