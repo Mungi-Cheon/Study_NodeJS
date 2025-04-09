@@ -8,16 +8,15 @@ app.set("views", "./views");
 
 dbConnect();
 
-app.get("/", (req, res)=>{
-    res.send('Hello, Node!');
-});
 
 // 미들웨어 등록
 app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use("/contacts", require("./routes/contactRoutes"));
-app.use('/public', express.static(__dirname + '/public'));
+
+app.use("/", require("./routes/loginRoute")); // 로그인 관련
+app.use("/contacts", require("./routes/contactRoutes")); // 연락처 관련
+app.use('/public', express.static(__dirname + '/public')); // css
 
 app.listen(3000, () => {
     console.log('서버 실행 중');

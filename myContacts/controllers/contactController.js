@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Contact = require("../models/contactModel");
+const Constants = require("../constants/MessageConstants");
 
 // Get all contacts
 const getAllContacts = asyncHandler(async (req, res) => {
@@ -18,13 +19,13 @@ const createContacts = asyncHandler(async (req, res) => {
     console.log(req.body);
     const {name, email, phone} = req.body;
     if(!name || !email || !phone){
-        return res.send("필수 값이 입력되지 않았습니다");
+        return res.send(Constants.ERROR_REQUIRED_FIELD_MISSING);
     }
 
     const contact = await Contact.create({
         name, email, phone
     });
-    res.send("Create Contacts");
+    res.send(Constants.CREATED_CONTACT);
 });
 
 // Get contact /contact/id
@@ -39,7 +40,7 @@ const updateContact = asyncHandler(async (req, res) => {
     const {name, email, phone} = req.body;
     const contact = await Contact.findById(id);
     if(!contact){
-        throw new Error("Contact not found");
+        throw new Error(Constants.ERROR_NOT_FOUND_CONTACT);
     }
 
     contact.name = name;
