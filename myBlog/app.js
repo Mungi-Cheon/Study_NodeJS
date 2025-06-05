@@ -22,8 +22,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(methodOverride("_method"));
 
-app.use("/", require("./routes/main"));
-app.use("/", require("./routes/admin"));
+app.use("/", require("./routes/postRouter"));
+app.use("/", require("./routes/adminRouter"));
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
