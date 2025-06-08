@@ -1,10 +1,10 @@
 const adminService = require("../service/adminService");
-const adminLayout = "../views/layouts/admin.ejs";
-const adminNoLogoutLayout = "../views/layouts/admin-nologout.ejs";
+const adminLoginLayout = "../views/layouts/admin-login.ejs";
+const adminNoLoginLayout = "../views/layouts/admin-nologin.ejs";
 
 const getAdminPage = (req, res) => {
     const locals = { title: "관리자 페이지" };
-    res.render("admin/index", { locals, layout: adminNoLogoutLayout });
+    res.render("admin/index", { locals, layout: adminNoLoginLayout });
 };
 
 const login = async (req, res) => {
@@ -20,7 +20,7 @@ const login = async (req, res) => {
 };
 
 const getRegisterPage = async (req, res) => {
-    res.render("admin/index", { layout: adminNoLogoutLayout });
+    res.render("admin/index", { layout: adminNoLoginLayout });
 };
 
 const register = async (req, res) => {
@@ -31,7 +31,7 @@ const register = async (req, res) => {
 const getAllPosts = async (req, res) => {
     const locals = { title: "Posts" };
     const data = await adminService.getAllPost();
-    res.render("admin/allPosts", { locals, data, layout: adminLayout });
+    res.render("admin/allPosts", { locals, data, layout: adminLoginLayout });
 };
 
 const logout = (req, res) => {
@@ -41,7 +41,7 @@ const logout = (req, res) => {
 
 const getAddPostPage = (req, res) => {
     const locals = { title: "게시물 작성" };
-    res.render("admin/add", { locals, layout: adminLayout });
+    res.render("admin/add", { locals, layout: adminLoginLayout });
 };
 
 const addPost = async (req, res) => {
@@ -56,7 +56,7 @@ const addPost = async (req, res) => {
 const getEditPostPage = async (req, res) => {
     const locals = { title: "게시물 수정" };
     const data = await adminService.getPostById(req.params.id);
-    res.render("admin/edit", { locals, data, layout: adminLayout });
+    res.render("admin/edit", { locals, data, layout: adminLoginLayout });
 };
 
 const editPost = async (req, res) => {
