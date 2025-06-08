@@ -22,11 +22,6 @@ const getAllPostByAdmin = async (req, res) => {
     res.render("admin/allPosts", { locals, data, layout: adminLayout });
 };
 
-const getAddPostPage = (req, res) => {
-    const locals = { title: "게시물 작성" };
-    res.render("admin/add", { locals, layout: adminLayout });
-};
-
 const addPost = async (req, res) => {
     const { title, body } = req.body;
     if (!title || !body) {
@@ -34,12 +29,6 @@ const addPost = async (req, res) => {
     }
     await postService.createPost(title, body);
     res.redirect("/allPosts");
-};
-
-const getEditPostPage = async (req, res) => {
-    const locals = { title: "게시물 수정" };
-    const data = await postService.fetchPostById(req.params.id);
-    res.render("admin/edit", { locals, data, layout: adminLayout });
 };
 
 const editPost = async (req, res) => {
@@ -56,9 +45,7 @@ module.exports = {
     getAllPost,
     getPostDetail,
     getAllPostByAdmin,
-    getAddPostPage,
     addPost,
-    getEditPostPage,
     editPost,
     deletePost,
 };

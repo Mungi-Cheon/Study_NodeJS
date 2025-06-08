@@ -1,6 +1,4 @@
 const Post = require("../models/Post");
-const jwt = require("jsonwebtoken");
-const jwtSecret = process.env.JWT_SECRET;
 
 /**
  * 게시글 전체 조회

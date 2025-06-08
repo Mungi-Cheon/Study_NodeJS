@@ -1,7 +1,4 @@
 const adminService = require("../service/adminService");
-const adminLoginLayout = "../views/layouts/admin-login.ejs";
-const adminNoLoginLayout = "../views/layouts/admin-nologin.ejs";
-const mainLayout = "../views/layouts/main.ejs";
 const { isAdmin } = require("../utils/authUtil");
 
 const login = async (req, res) => {
@@ -21,20 +18,7 @@ const logout = (req, res) => {
     res.redirect("/");
 };
 
-const getAdminPage = (req, res) => {
-    const locals = { title: "관리자 페이지" };
-    res.render("admin/login", { locals, layout: adminNoLoginLayout });
-};
-
-const getAboutPage = (req, res) => {
-    const layout = isAdmin(req) ? adminLoginLayout : mainLayout;
-    const locals = { title: "About" };
-    res.render("admin/about", { locals, layout: layout });
-};
-
 module.exports = {
     login,
     logout,
-    getAdminPage,
-    getAboutPage,
 };
