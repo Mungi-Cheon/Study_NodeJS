@@ -50,7 +50,6 @@ const deletePost = async (id) => {
 
 module.exports = {
     login,
-    register,
     getAllPost,
     createPost,
     getPostById,

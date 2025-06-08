@@ -19,10 +19,6 @@ const login = async (req, res) => {
     res.redirect("/allPosts");
 };
 
-const getRegisterPage = async (req, res) => {
-    res.render("admin/login", { layout: adminNoLoginLayout });
-};
-
 const getAllPosts = async (req, res) => {
     const locals = { title: "Posts" };
     const data = await adminService.getAllPost();
@@ -67,8 +63,6 @@ const deletePost = async (req, res) => {
 module.exports = {
     getAdminPage,
     login,
-    getRegisterPage,
-    register,
     getAllPosts,
     logout,
     getAddPostPage,

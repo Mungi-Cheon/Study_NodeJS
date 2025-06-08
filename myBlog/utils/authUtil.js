@@ -15,4 +15,19 @@ const checkLogin = (req, res, next) => {
     }
 };
 
-module.exports = { checkLogin };
+const isAdmin = (req) => {
+    const token = req.cookies?.token;
+
+    if (!token) {
+        return false;
+    }
+
+    try {
+        jwt.verify(token, jwtSecret);
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
+module.exports = { checkLogin,isAdmin };
