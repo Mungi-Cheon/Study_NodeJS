@@ -8,18 +8,8 @@ router.route("/admin")
     .get(adminController.getAdminPage)
     .post(asyncHandler(adminController.login));
 
-router.get("/allPosts", checkLogin, asyncHandler(adminController.getAllPosts));
-
 router.get("/logout", adminController.logout);
 
-router.route("/add")
-    .get(checkLogin, asyncHandler(adminController.getAddPostPage))
-    .post(checkLogin, asyncHandler(adminController.addPost));
-
-router.route("/edit/:id")
-    .get(checkLogin, asyncHandler(adminController.getEditPostPage))
-    .put(checkLogin, asyncHandler(adminController.editPost));
-
-router.delete("/delete/:id", checkLogin, asyncHandler(adminController.deletePost));
+router.get("/about", adminController.getAboutPage);
 
 module.exports = router;
