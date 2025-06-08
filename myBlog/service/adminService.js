@@ -3,6 +3,7 @@ const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtSecret = process.env.JWT_SECRET;
+const jwtAccessTtl = process.env.JWT_ACCESS_TTL;
 
 const login = async (username, password) => {
     const user = await User.findOne({ username });
@@ -15,13 +16,8 @@ const login = async (username, password) => {
         return { success: false, message: "일치하는 사용자가 없습니다." };
     }
 
-    const token = jwt.sign({ userId: user._id }, jwtSecret);
+    const token = jwt.sign({ userId: user._id }, jwtSecret,  { expiresIn: jwtAccessTtl });
     return { success: true, token };
-};
-
-const register = async (username, password) => {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await User.create({ username, password: hashedPassword });
 };
 
 const getAllPost = async () => {

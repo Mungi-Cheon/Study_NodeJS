@@ -7,8 +7,8 @@ const checkLogin = (req, res, next) => {
         return res.redirect("/admin");
     }
     try {
-        const decoded = jwt.verify(token, jwtSecret);
-        req.userId = decoded.userId;
+        const payload = jwt.verify(token, jwtSecret);
+        req.userId = payload.userId;
         next();
     } catch (error) {
         return res.redirect("/admin");

@@ -23,11 +23,6 @@ const getRegisterPage = async (req, res) => {
     res.render("admin/login", { layout: adminNoLoginLayout });
 };
 
-const register = async (req, res) => {
-    await adminService.register(req.body.username, req.body.password);
-    res.redirect("/admin");
-};
-
 const getAllPosts = async (req, res) => {
     const locals = { title: "Posts" };
     const data = await adminService.getAllPost();
