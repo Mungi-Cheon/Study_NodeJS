@@ -1,7 +1,7 @@
 const Post = require("../models/Post");
 const jwt = require("jsonwebtoken");
 const mainLayout = "../views/layouts/main.ejs";
-const adminLayout = "../views/layouts/admin.ejs";
+const adminLayout = "../views/layouts/admin-login.ejs";
 const jwtSecret = process.env.JWT_SECRET;
 
 /**

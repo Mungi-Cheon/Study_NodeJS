@@ -8,10 +8,6 @@ router.route("/admin")
     .get(adminController.getAdminPage)
     .post(asyncHandler(adminController.login));
 
-router.route("/register")
-    .get(asyncHandler(adminController.getRegisterPage))
-    .post(asyncHandler(adminController.register));
-
 router.get("/allPosts", checkLogin, asyncHandler(adminController.getAllPosts));
 
 router.get("/logout", adminController.logout);
