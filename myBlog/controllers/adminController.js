@@ -4,7 +4,7 @@ const adminNoLoginLayout = "../views/layouts/admin-nologin.ejs";
 
 const getAdminPage = (req, res) => {
     const locals = { title: "관리자 페이지" };
-    res.render("admin/index", { locals, layout: adminNoLoginLayout });
+    res.render("admin/login", { locals, layout: adminNoLoginLayout });
 };
 
 const login = async (req, res) => {
@@ -20,7 +20,7 @@ const login = async (req, res) => {
 };
 
 const getRegisterPage = async (req, res) => {
-    res.render("admin/index", { layout: adminNoLoginLayout });
+    res.render("admin/login", { layout: adminNoLoginLayout });
 };
 
 const register = async (req, res) => {
